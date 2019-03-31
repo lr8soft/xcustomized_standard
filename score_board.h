@@ -1,4 +1,4 @@
-#include "score_board_base.h"
+#include "score_board_fwd.h"
 #include <iostream>
 #include <string>
 #include <fstream>

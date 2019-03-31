@@ -57,6 +57,9 @@ namespace xc_std {
 			}
 
 		}
+		int get_size() {
+			return size;
+		}
 		T pop_front() {
 			T ret;
 			auto head_ptr = info_base;
