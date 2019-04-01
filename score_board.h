@@ -1,3 +1,6 @@
+#pragma once
+#ifndef _score_board_
+#define _score_board_
 #include "score_board_fwd.h"
 #include <iostream>
 #include <string>
@@ -98,3 +101,4 @@ void xc_std::score_board_base::_write_str(string &in,ostream &fs ) {
 	fs.write((char*)&len, sizeof(len));
 	fs.write(in.c_str(), sizeof(char)*len);
 }
+#endif
