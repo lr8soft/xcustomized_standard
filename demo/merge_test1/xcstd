@@ -1,8 +1,9 @@
-﻿#ifndef _xcstd_
+#ifndef _xcstd_
 #define _xcstd_
 #include "score_board_fwd.h"
 #include "config_manager_fwd.h"
-/*CopyRight by LT_lrsoft©2019 
+#include "audio_module_fwd.h"
+/*CopyRight by LT_lrsoft?2019 
   http://lrsoft.azurewebsites.net/
 */
 #endif

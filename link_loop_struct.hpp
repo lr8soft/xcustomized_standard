@@ -1,3 +1,4 @@
+#pragma once
 #ifndef link_loop_struct_hpp
 #define link_loop_struct_hpp
 #include<iostream>
