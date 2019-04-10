@@ -1,6 +1,9 @@
-#include "GameTimer.h"
+#pragma once
+#ifndef _game_timer_
+#define _game_timer_
+#include "game_timer_fwd.h"
 #include<windows.h>
-xc_std::GameTimer::GameTimer() :mSecondPerCount(0.0), mDeltaTime(-1.0), mBaseTime(0),
+xc_std::game_timer::game_timer() :mSecondPerCount(0.0), mDeltaTime(-1.0), mBaseTime(0),
 mPausedTime(0), mPrevTime(0),mCurrTime(0), mStopped(false)
 {
 	_int64 countsPerSec;
@@ -8,7 +11,7 @@ mPausedTime(0), mPrevTime(0),mCurrTime(0), mStopped(false)
 	mSecondPerCount = 1.0 / (double)countsPerSec;
 }
 
-float xc_std::GameTimer::TotalTime() const
+float xc_std::game_timer::TotalTime() const
 {
 	if (mStopped) {
 		return (float)(((mStopTime - mPausedTime) - mBaseTime)*mSecondPerCount);
@@ -19,12 +22,12 @@ float xc_std::GameTimer::TotalTime() const
 	return 0.0f;
 }
 
-float xc_std::GameTimer::DeltaTime() const
+float xc_std::game_timer::DeltaTime() const
 {
 	return (float)mDeltaTime;
 }
 
-void xc_std::GameTimer::Reset()
+void xc_std::game_timer::Reset()
 {
 	_int64 currTime;
 	QueryPerformanceCounter((LARGE_INTEGER*)&currTime);
@@ -35,7 +38,7 @@ void xc_std::GameTimer::Reset()
 	mStopped = false;
 }
 
-void xc_std::GameTimer::Start()
+void xc_std::game_timer::Start()
 {
 	_int64 startTime;
 	QueryPerformanceCounter((LARGE_INTEGER*)&startTime);
@@ -47,7 +50,7 @@ void xc_std::GameTimer::Start()
 	}
 }
 
-void xc_std::GameTimer::Stop()
+void xc_std::game_timer::Stop()
 {
 	if (!mStopped) {
 		_int64 currTime;
@@ -57,7 +60,7 @@ void xc_std::GameTimer::Stop()
 	}
 }
 
-void xc_std::GameTimer::Tick()
+void xc_std::game_timer::Tick()
 {
 	if (mStopped) {
 		mDeltaTime = 0.0;
@@ -76,4 +79,4 @@ void xc_std::GameTimer::Tick()
 	}
 
 }
-
+#endif /*game_timer_fwd*/

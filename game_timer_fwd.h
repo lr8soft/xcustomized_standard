@@ -2,11 +2,11 @@
 #ifndef _GAME_TIMER_
 #define _GAME_TIMER_
 namespace xc_std {
-	class GameTimer
+	class game_timer
 	{
 	public:
-		GameTimer();
-		~GameTimer()=default;
+		game_timer();
+		~game_timer()=default;
 
 		float TotalTime()const;
 		float DeltaTime()const;
