@@ -50,7 +50,7 @@ xc_ogl::GLSL_reader::GLSL_reader(GLuint program)
 	temp_program = program;
 }
 
-GLuint xc_ogl::GLSL_reader::load_from_file(const char *path, GLenum type)
+GLboolean xc_ogl::GLSL_reader::load_from_file(const char *path, GLenum type)
 {
 	auto *source_ptr = read_from_file(path);
 	GLuint temp_shader = glCreateShader(type);
@@ -69,10 +69,10 @@ GLuint xc_ogl::GLSL_reader::load_from_file(const char *path, GLenum type)
 		shader_count++;
 	}
 	delete[]source_ptr;
-	return temp_program;
+	return success;
 }
 
-GLuint xc_ogl::GLSL_reader::load_from_info(const char *info,GLenum type)
+GLboolean xc_ogl::GLSL_reader::load_from_info(const char *info,GLenum type)
 {
 	GLuint temp_shader=glCreateShader(type);//Create shader object
 	auto source = const_cast<const GLchar*>(info);
@@ -91,15 +91,15 @@ GLuint xc_ogl::GLSL_reader::load_from_info(const char *info,GLenum type)
 		shader_count++;	
 	}
 	
-	return temp_program;
+	return success;
 }
 
-GLuint xc_ogl::GLSL_reader::add_new_shader(GLuint shader, GLenum type)
+GLboolean xc_ogl::GLSL_reader::add_new_shader(GLuint shader, GLenum type)
 {
+	GLint success=GL_FALSE;
 	if (glIsShader(shader)) {
 		glCompileShader(shader);
 
-		GLint success;
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 		if (!success) {
 #ifdef _DEBUG
@@ -111,7 +111,7 @@ GLuint xc_ogl::GLSL_reader::add_new_shader(GLuint shader, GLenum type)
 			shader_count++;
 		}
 	}
-	return temp_program;
+	return success;
 }
 
 GLboolean xc_ogl::GLSL_reader::link_all_shader()
@@ -130,4 +130,10 @@ GLboolean xc_ogl::GLSL_reader::link_all_shader()
 			return GL_TRUE;
 		}
 	}
+	return GL_FALSE;
+}
+
+GLuint xc_ogl::GLSL_reader::get_program()
+{
+	return temp_program;
 }
