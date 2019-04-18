@@ -3,7 +3,6 @@
 #include "score_board_fwd.h"
 #include "config_manager_fwd.h"
 #include "audio_module_fwd.h"
-#include "GLSL_reader.h"
 /*CopyRight by LT_lrsoft?2019 
   http://lrsoft.azurewebsites.net/
 */

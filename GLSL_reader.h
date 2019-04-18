@@ -4,7 +4,7 @@
 #include<GL3/gl3w.h>
 #include<iostream>
 using std::string;
-namespace xc_std {
+namespace xc_ogl {
 	class GLSL_reader {
 	private:
 		GLuint temp_program=0;
@@ -14,10 +14,9 @@ namespace xc_std {
 	public:
 		GLSL_reader();
 		GLSL_reader(GLuint program);
-		GLboolean load_from_file(const char* path,GLenum type);
-		GLboolean load_from_info(const char* info, GLenum type);
-		GLboolean add_new_shader(GLuint shader, GLenum type);
-		GLuint get_program();
+		GLuint load_from_file(const char* path,GLenum type);
+		GLuint load_from_info(const char* info, GLenum type);
+		GLuint add_new_shader(GLuint shader, GLenum type);
 		GLboolean link_all_shader();
 	};
 }
