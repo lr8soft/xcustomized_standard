@@ -26,8 +26,12 @@ const GLchar * xc_ogl::GLSL_reader::read_from_file(const char* path)
 	}
 	else {
 		string info, temp_info;
+		bool is_first =true;
 		while (std::getline(io, temp_info)) {
-			info += '\n';
+			if (is_first)
+				is_first = false;
+			else
+				info += '\n';
 			info += temp_info;
 		}
 		io.close();
