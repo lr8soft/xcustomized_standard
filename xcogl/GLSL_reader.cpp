@@ -10,9 +10,9 @@ void xc_ogl::GLSL_reader::show_failed_info(string sre)
 	GLsizei len;
 	glGetProgramiv(temp_program, GL_INFO_LOG_LENGTH, &len);
 
-	GLchar* log = new GLchar[len + 1];
+	char* log = new char[len + 1];
 	glGetProgramInfoLog(temp_program, len, &len, log);
-	std::cerr << sre <<" failed: " << log << std::endl;
+	std::cerr <<"[ERROR]" <<sre <<" failed: " << log << std::endl;
 	delete[] log;
 }
 const GLchar * xc_ogl::GLSL_reader::read_from_file(const char* path)
@@ -21,7 +21,7 @@ const GLchar * xc_ogl::GLSL_reader::read_from_file(const char* path)
 	ifstream io(path);
 	if (!io) {
 #ifdef _DEBUG
-		std::cerr << "Unable to open file '" << path << "'" << std::endl;
+		std::cerr << "[ERROR]Unable to open file '" << path << "'" << std::endl;
 #endif /* DEBUG */
 	}
 	else {
@@ -36,7 +36,7 @@ const GLchar * xc_ogl::GLSL_reader::read_from_file(const char* path)
 		}
 		io.close();
 #ifdef _DEBUG
-		std::cout << info<<std::endl;
+		std::cout <<"[INFO]Load shader from file " <<path<<std::endl;
 #endif
 		ret =new GLchar[info.length()+1];
 		memcpy_s(ret,info.length(),info.c_str(),info.length());
@@ -65,7 +65,9 @@ GLboolean xc_ogl::GLSL_reader::load_from_file(const char *path, GLenum type)
 	glGetShaderiv(temp_shader, GL_COMPILE_STATUS, &success);
 	if (!success) {
 #ifdef _DEBUG
-		show_failed_info("Shader compilation");
+		char error_log[512] = {'\0'};
+		sprintf_s(error_log,"Shader \"%s\" compilation", path);
+		show_failed_info(error_log);
 #endif // DEBUG Mode
 	}
 	else {
@@ -131,6 +133,9 @@ GLboolean xc_ogl::GLSL_reader::link_all_shader()
 			return GL_FALSE;
 		}
 		else {
+#ifdef _DEBUG
+			std::cout << "[INFO]Link all shader files" << std::endl;
+#endif /* DEBUG */
 			return GL_TRUE;
 		}
 	}
