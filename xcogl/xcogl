@@ -1,7 +1,7 @@
 #ifndef _xcogl_
 #define _xcogl_
-#include "GLSL_reader.h"
-#include "ogl_app.h"
+#include "ShaderReader.h"
+#include "AppFrameWork.h"
 /*CopyRight by LT_lrsoft?2019 
   http://lrsoft.azurewebsites.net/
 */

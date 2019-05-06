@@ -1,11 +1,11 @@
 #include<iostream>
-#include "GLSL_reader.h"
+#include "ShaderReader.h"
 #include<string>
 #include<fstream>
 #include<sstream>
 using std::stringstream;
 using std::ifstream;
-void xc_ogl::GLSL_reader::show_failed_info(string sre)
+void xc_ogl::ShaderReader::show_failed_info(string sre)
 {
 	GLsizei len;
 	glGetProgramiv(temp_program, GL_INFO_LOG_LENGTH, &len);
@@ -15,7 +15,7 @@ void xc_ogl::GLSL_reader::show_failed_info(string sre)
 	std::cerr <<"[ERROR]" <<sre <<" failed: " << log << std::endl;
 	delete[] log;
 }
-const GLchar * xc_ogl::GLSL_reader::read_from_file(const char* path)
+const GLchar * xc_ogl::ShaderReader::read_from_file(const char* path)
 {
 	GLchar *ret = nullptr;
 	ifstream io(path);
@@ -44,17 +44,17 @@ const GLchar * xc_ogl::GLSL_reader::read_from_file(const char* path)
 	}
 	return const_cast<GLchar*>(ret);
 }
-xc_ogl::GLSL_reader::GLSL_reader()
+xc_ogl::ShaderReader::ShaderReader()
 {
 	temp_program = glCreateProgram();
 }
 
-xc_ogl::GLSL_reader::GLSL_reader(GLuint program)
+xc_ogl::ShaderReader::ShaderReader(GLuint program)
 {
 	temp_program = program;
 }
 
-GLboolean xc_ogl::GLSL_reader::load_from_file(const char *path, GLenum type)
+GLboolean xc_ogl::ShaderReader::load_from_file(const char *path, GLenum type)
 {
 	auto *source_ptr = read_from_file(path);
 	GLuint temp_shader = glCreateShader(type);
@@ -78,7 +78,7 @@ GLboolean xc_ogl::GLSL_reader::load_from_file(const char *path, GLenum type)
 	return success;
 }
 
-GLboolean xc_ogl::GLSL_reader::load_from_info(const char *info,GLenum type)
+GLboolean xc_ogl::ShaderReader::load_from_info(const char *info,GLenum type)
 {
 	GLuint temp_shader=glCreateShader(type);//Create shader object
 	auto source = const_cast<const GLchar*>(info);
@@ -100,7 +100,7 @@ GLboolean xc_ogl::GLSL_reader::load_from_info(const char *info,GLenum type)
 	return success;
 }
 
-GLboolean xc_ogl::GLSL_reader::add_new_shader(GLuint shader, GLenum type)
+GLboolean xc_ogl::ShaderReader::add_new_shader(GLuint shader, GLenum type)
 {
 	GLint success=GL_FALSE;
 	if (glIsShader(shader)) {
@@ -120,7 +120,7 @@ GLboolean xc_ogl::GLSL_reader::add_new_shader(GLuint shader, GLenum type)
 	return success;
 }
 
-GLboolean xc_ogl::GLSL_reader::link_all_shader()
+GLboolean xc_ogl::ShaderReader::link_all_shader()
 {
 	if (shader_count>0) {
 		glLinkProgram(temp_program);
@@ -142,7 +142,7 @@ GLboolean xc_ogl::GLSL_reader::link_all_shader()
 	return GL_FALSE;
 }
 
-GLuint xc_ogl::GLSL_reader::get_program()
+GLuint xc_ogl::ShaderReader::get_program()
 {
 	return temp_program;
 }
