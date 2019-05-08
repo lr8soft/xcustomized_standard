@@ -4,32 +4,29 @@
 #include <GLFW/glfw3.h>
 #include "XCShape/XCRectangle.h"
 #include "XCShape/XCCube.h"
+#include "../RenderGroup.h"
 namespace xc_ogl {
 	class AppFrameWork
 	{
 	private:
-		xc_shape::XCCube *cube;
-		xc_shape::XCRectangle *rect;
+		RenderGroup rendergroup;
 		static AppFrameWork* app_ptr;
 		const char* title;
 		int width, height;
 		bool have_init = false;
-		GLuint vao,vao_bg ,vbo,vbo_bg,tbo,tbo_bg;
-		GLuint program,program_bg;
 		GLFWwindow* screen;
 		static void screen_resize(GLFWwindow*,int,int);
-		virtual void display();
-		virtual void key_check();
-		virtual void render();
-		virtual void shader_init();
-		enum{ VAOBG,VAOShape };
+		void display();
+		void key_check();
+		void render();
+		void shader_init();
 	public:
 		AppFrameWork();
 		AppFrameWork(int width,int height,const char* title);
 		~AppFrameWork()=default;
 		void finalizer();
 		void init();
-		virtual void message_loop();
+		void message_loop();
 	};
 }
 

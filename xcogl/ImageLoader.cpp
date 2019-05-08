@@ -41,7 +41,7 @@ void xc_ogl::ImageLoader::Release()
 	}		
 }
 
-void * xc_ogl::ImageLoader::LoadTextureData(const char * path)
+void * xc_ogl::ImageLoader::LoadTextureData(const char * path,GLuint i)
 {
 	texture_ptr = stbi_load(path, &width, &height, &channel, 4);
 	glBindTexture(texture_type, tbo);
@@ -55,7 +55,7 @@ void * xc_ogl::ImageLoader::LoadTextureData(const char * path)
 		std::cerr << "[ERROR]Failed to load background." << std::endl;
 #endif
 	}
-	glBindTexture(texture_type, 0);
+	glBindTexture(texture_type, i);
 	return texture_ptr;
 }
 
