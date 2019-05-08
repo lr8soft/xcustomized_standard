@@ -3,10 +3,12 @@
 #define _ogl_class_
 #include <GLFW/glfw3.h>
 #include "XCShape/XCRectangle.h"
+#include "XCShape/XCCube.h"
 namespace xc_ogl {
 	class AppFrameWork
 	{
 	private:
+		xc_shape::XCCube *cube;
 		xc_shape::XCRectangle *rect;
 		static AppFrameWork* app_ptr;
 		const char* title;
