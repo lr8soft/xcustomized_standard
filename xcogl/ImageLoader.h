@@ -16,7 +16,7 @@ namespace xc_ogl {
 		ImageLoader(GLenum type,GLenum format,GLuint tbo);
 		~ImageLoader();
 		void Release();
-		void* LoadTextureData(const char* path,GLuint i);
+		void* LoadTextureData(const char* path);
 		GLuint GetTBO();
 	};
 }

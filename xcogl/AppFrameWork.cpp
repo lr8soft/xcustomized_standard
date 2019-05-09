@@ -3,6 +3,7 @@
 #include "AppFrameWork.h"
 #include "ImageLoader.h"
 #include <GL3/gl3w.h>
+#include <GL/GLU.h>
 #include "stb_image.h"
 
 xc_ogl::AppFrameWork* xc_ogl::AppFrameWork::app_ptr = nullptr;
