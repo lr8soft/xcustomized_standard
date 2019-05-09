@@ -45,13 +45,19 @@ void xc_ogl::AppFrameWork::display()
 void xc_ogl::AppFrameWork::key_check()
 {
 	rendergroup.GroupKeyCheck(screen);
+	bggroup.GroupKeyCheck(screen);
 }
 void xc_ogl::AppFrameWork::shader_init()
 {
 	rendergroup.GroupInit();
+	bggroup.GroupInit();
+	eygroup.GroupInit();
 }
 void xc_ogl::AppFrameWork::render()
 {
+	glClear(GL_COLOR_BUFFER_BIT);
+	bggroup.GroupRender();
+	eygroup.GroupRender();
 	rendergroup.GroupRender();
 }
 

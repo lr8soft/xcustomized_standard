@@ -4,12 +4,16 @@
 #include <GLFW/glfw3.h>
 #include "XCShape/XCRectangle.h"
 #include "XCShape/XCCube.h"
-#include "../RenderGroup.h"
+#include "../PlayerRenderGroup.h"
+#include "../BackGroundRenderGroup.h"
+#include "../EnemyRenderGroup.h"
 namespace xc_ogl {
 	class AppFrameWork
 	{
 	private:
-		RenderGroup rendergroup;
+		EnemyRenderGroup eygroup;
+		BackGroundRenderGroup bggroup;
+		PlayerRenderGroup rendergroup;
 		static AppFrameWork* app_ptr;
 		const char* title;
 		int width, height;
