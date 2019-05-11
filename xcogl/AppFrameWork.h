@@ -2,8 +2,6 @@
 #ifndef _ogl_class_
 #define _ogl_class_
 #include <GLFW/glfw3.h>
-#include "XCShape/XCRectangle.h"
-#include "XCShape/XCCube.h"
 #include "../PlayerRenderGroup.h"
 #include "../BackGroundRenderGroup.h"
 #include "../EnemyRenderGroup.h"
